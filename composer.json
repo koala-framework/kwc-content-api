@@ -1,0 +1,9 @@
+{
+    "name": "koala-framework/kwc-content-api",
+    "require": {
+        "koala-framework/koala-framework": "~5.1"
+    },
+    "autoload": {
+        "psr-4": { "Kwf\\KwcContentApiBundle\\": "" }
+    }
+}
