@@ -8,7 +8,7 @@ class Configuration implements \Symfony\Component\Config\Definition\Configuratio
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('kwc_contentapi');
+        $rootNode = $treeBuilder->root('kwc_content_api');
         $rootNode
             ->children()
                 ->arrayNode('export_components')

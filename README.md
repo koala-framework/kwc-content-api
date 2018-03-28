@@ -14,7 +14,7 @@
 
 * Add routing config to `routing.yml`
 
-        kwccontentapi:
+        kwc_content_api:
             resource: "@KwfKwcContentApiBundle/Resources/config/routing.yml"
             prefix:   /
 

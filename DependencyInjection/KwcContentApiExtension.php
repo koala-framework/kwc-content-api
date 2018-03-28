@@ -18,7 +18,7 @@ class KwcContentApiExtension extends Extension
 
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
-        $def = $container->getDefinition('kwc_contentapi.content_builder');
+        $def = $container->getDefinition('kwc_content_api.content_builder');
         $def->addMethodCall('setExportComponents', array('exportComponents' => $config['export_components']));
     }
 }
