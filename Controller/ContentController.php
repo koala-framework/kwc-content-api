@@ -1,12 +1,12 @@
 <?php
 namespace Kwc\ContentApiBundle\Controller;
 
-use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 use Symfony\Component\HttpFoundation\Request;
 use Kwf_Component_Data_Root;
 use Kwc\ContentApiBundle\Services\ContentBuilder;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ContentController
 {
@@ -36,7 +36,7 @@ class ContentController
 
         $data = $this->contentBuilder->getContent($page);
 
-        return View::create(array(
+        return new JsonResponse(array(
             'data'=>$data
         ), 200);
     }
