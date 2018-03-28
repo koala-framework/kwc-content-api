@@ -13,7 +13,7 @@ class ContentBuilder
         $this->exportComponents = $componentClasses;
     }
 
-    public function getContent(\Kwf_Component_Data $data)
+    public function getContent(Kwf_Component_Data $data)
     {
         if (Kwc_Abstract::hasSetting($data->componentClass, 'apiContent') && in_array($data->componentClass, $this->exportComponents)) {
             $cls = Kwc_Abstract::getSetting($data->componentClass, 'apiContent');
