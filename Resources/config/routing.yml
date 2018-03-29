@@ -1,0 +1,4 @@
+kwc_content_api.content:
+    path:       /api/v1/kwc-content
+    defaults:
+        _controller: kwc_content_api.content_controller:dataAction

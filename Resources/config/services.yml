@@ -1,0 +1,8 @@
+services:
+    kwc_content_api.content_controller:
+        class:    Kwc\ContentApiBundle\Controller\ContentController
+        autowire: true
+
+    kwc_content_api.content_builder:
+        class:    Kwc\ContentApiBundle\Services\ContentBuilder
+        autowire: true
