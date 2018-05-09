@@ -19,20 +19,35 @@ class ContentBuilder
             $cls = Kwc_Abstract::getSetting($data->componentClass, 'apiContent');
             $apiContent = new $cls();
             $ret = $apiContent->getContent($data);
-            $ret['type'] = Kwc_Abstract::getSetting($data->componentClass, 'apiContentType');
+            if ($ret instanceof Kwf_Component_Data) {
+                $ret = $this->getContent($ret);
+            } else {
+                $ret['type'] = Kwc_Abstract::getSetting($data->componentClass, 'apiContentType');
+            }
 
-            $self = $this;
-            array_walk_recursive($ret, function(&$v) use ($self) {
-                if ($v instanceof Kwf_Component_Data) {
-                    $v = $self->getContent($v);
-                }
-            });
+
+            $ret = $this->convertData($ret);
         } else {
             $ret = array();
             $ret['html'] = $data->render();
             $ret['type'] = 'legacyHtml';
-            $ret['cls'] = $data->componentClass;
         }
         return $ret;
+    }
+
+    private function convertData($data)
+    {
+        foreach ($data as $k=>$i) {
+            if (is_array($i)) {
+                $data[$k] = $this->convertData($i);
+            } else if ($i instanceof Kwf_Component_Data) {
+                $data[$k] = $this->getContent($i);
+            } else if (is_object($i)) {
+                $data[$k] = $this->convertData((array)$i);
+            } else {
+                $data[$k] = $i;
+            }
+        }
+        return $data;
     }
 }
