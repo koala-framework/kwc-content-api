@@ -15,7 +15,7 @@
 * Add routing config to `routing.yml`
 
         kwc_content_api:
-            resource: "@KwfKwcContentApiBundle/Resources/config/routing.yml"
+            resource: "@KwcContentApiBundle/Resources/config/routing.yml"
             prefix:   /
 
 * Add components to be exported to whitelist in `config.yml`
