@@ -34,7 +34,11 @@ class ContentController
 
         if (!$page) throw new NotFoundHttpException();
 
-        $data = $this->contentBuilder->getContent($page);
+        if ($page->hasContent()) {
+            $data = $this->contentBuilder->getContent($page);
+        } else {
+            $data = null;
+        }
 
         return new JsonResponse(array(
             'data'=>$data
