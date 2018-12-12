@@ -32,6 +32,7 @@ class ContentBuilder
             $ret['html'] = $data->render();
             $ret['type'] = 'legacyHtml';
         }
+        $ret['hasContent'] = $data->hasContent();
         return $ret;
     }
 
