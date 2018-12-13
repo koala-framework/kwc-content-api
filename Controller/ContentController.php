@@ -7,12 +7,13 @@ use Kwf_Component_Data_Root;
 use Kwc\ContentApiBundle\Services\ContentBuilder;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Kwc\ContentApiBundle\Services\ContentBuilderInterface;
 
 class ContentController
 {
     private $contentBuilder;
 
-    public function __construct(ContentBuilder $contentBuilder)
+    public function __construct(ContentBuilderInterface $contentBuilder)
     {
         $this->contentBuilder = $contentBuilder;
     }

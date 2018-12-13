@@ -4,7 +4,7 @@ namespace Kwc\ContentApiBundle\Services;
 use Kwc_Abstract;
 use Kwf_Component_Data;
 
-class ContentBuilder
+class ContentBuilder implements ContentBuilderInterface
 {
     private $exportComponents;
 
@@ -18,19 +18,21 @@ class ContentBuilder
         if (Kwc_Abstract::hasSetting($data->componentClass, 'apiContent') && in_array($data->componentClass, $this->exportComponents)) {
             $cls = Kwc_Abstract::getSetting($data->componentClass, 'apiContent');
             $apiContent = new $cls();
-            $ret = $apiContent->getContent($data);
-            if ($ret instanceof Kwf_Component_Data) {
-                $ret = $this->getContent($ret);
+            $contentData = $apiContent->getContent($data);
+            if ($contentData instanceof Kwf_Component_Data) {
+                $ret = $this->getContent($contentData);
             } else {
                 $ret['type'] = Kwc_Abstract::getSetting($data->componentClass, 'apiContentType');
+                $ret['id'] = $data->componentId;
+                $ret['data'] = $this->convertData($contentData);
             }
-
-
-            $ret = $this->convertData($ret);
         } else {
             $ret = array();
-            $ret['html'] = $data->render();
+            $ret['data'] = array(
+                'html' => $data->render()
+            );
             $ret['type'] = 'legacyHtml';
+            $ret['id'] = $data->componentId;
         }
         return $ret;
     }
