@@ -33,6 +33,7 @@ class ContentBuilder implements ContentBuilderInterface
             );
             $ret['type'] = 'legacyHtml';
             $ret['id'] = $data->componentId;
+            $ret['componentClass'] = $data->componentClass;
         }
         return $ret;
     }
