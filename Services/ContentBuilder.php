@@ -15,7 +15,9 @@ class ContentBuilder implements ContentBuilderInterface
 
     public function getContent(Kwf_Component_Data $data)
     {
-        if (Kwc_Abstract::hasSetting($data->componentClass, 'apiContent') && in_array($data->componentClass, $this->exportComponents)) {
+        if (Kwc_Abstract::hasSetting($data->componentClass, 'apiContent')
+            && (count($this->exportComponents) == 0 || in_array($data->componentClass, $this->exportComponents))
+        ) {
             $cls = Kwc_Abstract::getSetting($data->componentClass, 'apiContent');
             $apiContent = new $cls();
             $contentData = $apiContent->getContent($data);
