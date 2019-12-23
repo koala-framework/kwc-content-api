@@ -24,7 +24,9 @@ class ContentBuilder implements ContentBuilderInterface
             } else {
                 $ret['type'] = Kwc_Abstract::getSetting($data->componentClass, 'apiContentType');
                 $ret['id'] = $data->componentId;
-                $ret['data'] = $this->convertData($contentData);
+                if ($data = $this->convertData($contentData)) {
+                    $ret['data'] = $data;
+                }
             }
         } else {
             $ret = array();
@@ -40,6 +42,8 @@ class ContentBuilder implements ContentBuilderInterface
 
     private function convertData($data)
     {
+        if ($data === null) return null;
+
         foreach ($data as $k=>$i) {
             if (is_array($i)) {
                 $data[$k] = $this->convertData($i);
