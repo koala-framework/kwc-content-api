@@ -39,6 +39,23 @@ class ContentBuilder implements ContentBuilderInterface
             $ret['id'] = $data->componentId;
             $ret['componentClass'] = $data->componentClass;
         }
+        if ($data instanceof Kwf_Component_Data
+            && is_instance_of(Kwc_Abstract::getSetting($data->componentClass, 'contentSender'), 'Kwf_Component_Abstract_ContentSender_Lightbox')
+        ) {
+            $parentLink = null;
+            if ($parentData = $data->getParentPage()) {
+                $parentLink = array(
+                    'href' => $parentData->getUrl(),
+                    'id' => $parentData->componentId
+                );
+            }
+            $ret = array(
+                "type" => "lightbox",
+                "id" => "",
+                "parent" => $parentLink,
+                "content" => $ret
+            );
+        }
         return $ret;
     }
 
