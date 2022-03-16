@@ -7,7 +7,7 @@
         {
             $bundles = array(
                 ...
-                new Kwf\KwcContentApiBundle\KwfKwcContentApiBundle()
+                new Kwc\ContentApiBundle\KwcContentApiBundle()
             );
             ...
         }
@@ -25,4 +25,3 @@
         export_components:
             - Kwc_Paragraphs_Component
             - Kwc_Basic_Headline_Component
-
