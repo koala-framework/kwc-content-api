@@ -7,7 +7,7 @@
         {
             $bundles = array(
                 ...
-                new Kwf\KwcContentApiBundle\KwfKwcContentApiBundle()
+                new Kwc\ContentApiBundle\KwcContentApiBundle()
             );
             ...
         }
@@ -20,9 +20,7 @@
 
 * Add components to be exported to whitelist in `config.yml`
 
-
-    kwc_content_api:
-        export_components:
-            - Kwc_Paragraphs_Component
-            - Kwc_Basic_Headline_Component
-
+        kwc_content_api:
+            export_components:
+                - Kwc_Paragraphs_Component
+                - Kwc_Basic_Headline_Component
