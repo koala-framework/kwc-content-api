@@ -56,6 +56,7 @@ class ContentBuilder implements ContentBuilderInterface
                 "content" => $ret
             );
         }
+        $ret['hasContent'] = $data->hasContent();
         return $ret;
     }
 
